@@ -13,6 +13,9 @@ inputs:
   sheet-name:
     description: "Google Sheets list name to insert Issues data"
     required: true
+  GITHUB_TOKEN:
+    description: "Token to access private repo"
+    required: true
 runs:
   using: 'node12'
   main: 'dist/index.js'
