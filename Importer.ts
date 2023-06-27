@@ -32,6 +32,8 @@ export class Importer {
             Core.endGroup()
 
             Core.startGroup("📑 Getting all Issues in repository...")
+            Core.info(GitHub.context.repo.owner)
+            Core.info(GitHub.context.repo.repo)
             var page = 1
             var issuesData = []
             var issuesPage
