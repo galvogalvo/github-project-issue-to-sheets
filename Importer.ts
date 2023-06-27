@@ -19,7 +19,8 @@ export class Importer {
             const serviceAccountCredentials = Core.getInput(Importer.INPUT_SERVICE_ACCOUNT_JSON)
             const documentId = Core.getInput(Importer.INPUT_DOCUMENT_ID)
             const sheetName = Core.getInput(Importer.INPUT_SHEET_NAME)
-            if (!serviceAccountCredentials || !documentId || !sheetName) {
+            const token = Core.getInput(Importer.GITHUB_TOKEN)
+            if (!serviceAccountCredentials || !documentId || !sheetName || !token) {
                 throw new Error("🚨 Some Inputs missed. Please check project README.")
             }
             Core.info("Auth with GitHub Token...")
