@@ -2,7 +2,6 @@ import * as Core from "@actions/core";
 import { Octokit } from "@octokit/rest";
 import * as GitHub from "@actions/github";
 import { google } from "googleapis";
-import { createActionAuth } from "@octokit/auth-action";
 
 export class Importer {
 

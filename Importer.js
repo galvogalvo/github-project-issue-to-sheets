@@ -13,14 +13,19 @@ class Importer {
             const serviceAccountCredentials = Core.getInput(Importer.INPUT_SERVICE_ACCOUNT_JSON);
             const documentId = Core.getInput(Importer.INPUT_DOCUMENT_ID);
             const sheetName = Core.getInput(Importer.INPUT_SHEET_NAME);
-            if (!serviceAccountCredentials || !documentId || !sheetName) {
+            const token = Core.getInput(Importer.GITHUB_TOKEN);
+            if (!serviceAccountCredentials || !documentId || !sheetName || !token) {
                 throw new Error("🚨 Some Inputs missed. Please check project README.");
             }
             Core.info("Auth with GitHub Token...");
-            const octokit = new rest_1.Octokit();
+            const octokit = new rest_1.Octokit({
+                auth: token,
+            });
             Core.info("Done.");
             Core.endGroup();
             Core.startGroup("📑 Getting all Issues in repository...");
+            Core.info(GitHub.context.repo.owner);
+            Core.info(GitHub.context.repo.repo);
             var page = 1;
             var issuesData = [];
             var issuesPage;
@@ -132,4 +137,5 @@ Importer.LOG_BULLET_ITEM = "·️";
 Importer.INPUT_SERVICE_ACCOUNT_JSON = "google-api-service-account-credentials";
 Importer.INPUT_DOCUMENT_ID = "document-id";
 Importer.INPUT_SHEET_NAME = "sheet-name";
+Importer.GITHUB_TOKEN = "GITHUB_TOKEN";
 //# sourceMappingURL=Importer.js.map
